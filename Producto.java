@@ -1,12 +1,12 @@
 public class Producto {
 
-    String nombrDelProducto;
-    int precioProducto;
-    int cantidadDeProductos;
+    String productName;;
+    int productPrice;
+    int productQuantity;
 
-    public Producto(String nombrDelProducto,int precioProducto,int cantidadDeProductos){
-        this.nombrDelProducto=nombrDelProducto;
-        this.precioProducto=precioProducto;
-        this.cantidadDeProductos=cantidadDeProductos;
+    public Producto(String productName,int productPrice,int productQuantity){
+        this.productName=productName;
+        this.productPrice=productPrice;
+        this.productQuantity =productQuantity;
     }
 }

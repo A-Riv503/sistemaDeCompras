@@ -1,127 +1,87 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.List;
 
 public class CarritoDeCompras {
-    Scanner scan=new Scanner(System.in);
-    public void agregarProducto(ArrayList<Producto> informacionProducto){
-        int cantidad;//cantidad de productos ha hagarrar
-        String nombreProducto;
-        int precioProducto,cantidadProductos;
+
+      List <Stock> addProductToShopCar=new ArrayList<>();
+
+      public void addToShopCar(Stock product){
+          addProductToShopCar.add(product);
+      }
+
+    public void showAllProduct() {
+        for (Stock product : addProductToShopCar) {
+            System.out.println(product);
+        }
+    }
+    /*public void addProduct(ArrayList<Producto> informationProducts){
+        int amount;//cantidad de productos ha hagarrar
+        String productName;
+        int productPrice,productQuantity;
 
         System.out.println("ingrese la cantidad de productos que desea agregar");
-        cantidad=scan.nextInt();
+        amount=scan.nextInt();
         scan.nextLine();
 
-        for(int i=0;i<cantidad;i++){
+        for(int i=0;i<amount;i++){
             System.out.println("ingrese el nombre de sus productos");
-            nombreProducto=scan.nextLine();
+            productName=scan.nextLine();
             System.out.println("ingrese el precio de ese producto");
-            precioProducto=scan.nextInt();
+            productPrice=scan.nextInt();
             scan.nextLine();
             System.out.println("ingrese la cantidad de productos que hay en stock");
-            cantidadProductos=scan.nextInt();
+            productQuantity=scan.nextInt();
             scan.nextLine();
 
-            informacionProducto.add(new Producto(nombreProducto,precioProducto,cantidadProductos));
+            informationProducts.add(new Producto(productName,productPrice,productQuantity));
         }
     }
 
-    public void agregarProductoAlCarrito(ArrayList<Producto> informacionProducto,ArrayList<Producto> canasta){
-        int agregarOtroProducto; //repetir para agregar otro producto al carrito;
-        String nombreDeProducto;
-        //Producto data=informacionProducto.get();
-        int productoCantidad; // despues preguntaremos la cantidad que quiere agregar a cada producto;
-
-
-        do {
-            System.out.println("que producto desea agregar");
-            nombreDeProducto = scan.nextLine();
-            int index = 0;
-
-        /*for(int i=0;i<informacionProducto.size();i++){
-            Producto data=informacionProducto.get(i);
-
-            System.out.println(data.nombrDelProducto);
-
-            if(data.nombrDelProducto.equals(nombreDeProducto)){//si el producto registrado es igual al que se busca
-                System.out.println("tenemos "+data.cantidadDeProductos+" disponibles");//mencionamos la cantidad en stock
-                System.out.println("cuantas unidades de este producto desea agregar");
-                productoCantidad=scan.nextInt();//guardamos la cantidad de productos que el usuario quiere
-
-                if(productoCantidad>data.cantidadDeProductos){//si la cantidad que ingresa el usuario es mayor a la de stock
-                    System.out.println("no hay suficiente producto en stock cambie la cantidad");
-                }else{
-                    canasta=(ArrayList<Producto>) informacionProducto.clone(); //guardar los productos que el usuario compra en un carrito o canasta
-                }
-
-
-            }else{
-                System.out.println("ese producto no existe intentelo nuevamente");
-                agregarOtroProducto=1;
-            }
-        }*/
-            Producto data = informacionProducto.get(index);
-
-            System.out.println(data.nombrDelProducto);
-
-            if (data.nombrDelProducto.equals(nombreDeProducto)) {//si el producto registrado es igual al que se busca
-                System.out.println("tenemos " + data.cantidadDeProductos + " disponibles");//mencionamos la cantidad en stock
-                System.out.println("cuantas unidades de este producto desea agregar");
-                productoCantidad = scan.nextInt();//guardamos la cantidad de productos que el usuario quiere
-
-                if (productoCantidad > data.cantidadDeProductos) {//si la cantidad que ingresa el usuario es mayor a la de stock
-                    System.out.println("no hay suficiente producto en stock cambie la cantidad");
-                } else {
-                    canasta = (ArrayList<Producto>) informacionProducto.clone(); //guardar los productos que el usuario compra en un carrito o canasta
-                }
-
-
-            } else {
-                System.out.println("ese producto no existe intentelo nuevamente");
-                agregarOtroProducto = 1;
-            }
-
-
-            System.out.println("desea agregar otro producto 1-si 2-no");
-            agregarOtroProducto = scan.nextInt();
-
-        } while (agregarOtroProducto == 1);
-
-    }
-
-
-    public void productoCarrito(ArrayList<Producto> informacionProducto,ArrayList<Producto> canasta){
-        int agregarOtroProducto; //repetir para agregar otro producto al carrito;
+    public void productBasket(ArrayList<Producto> informationProducts, ArrayList<Producto> basket){
+        int addAnotherProduct; //repetir para agregar otro producto al carrito;
         String productoCanasta;
         //Producto data=informacionProducto.get();
-        int productoCantidad; // despues preguntaremos la cantidad que quiere agregar a cada producto;
+        int productQuantity; // despues preguntaremos la cantidad que quiere agregar a cada producto;
         int index=0;
-        Producto data = informacionProducto.get(index);
+        Producto data = informationProducts.get(index);
 
-     do{
-         System.out.println("que producto desea agregar al carrito");
-         productoCanasta = scan.nextLine();
+        do {
+            System.out.println("Que producto desea agregar al carrito");
+            productoCanasta = scan.nextLine();
 
-        switch (data.nombrDelProducto){
-            case productoCanasta:
-                System.out.println("tenemos " + data.cantidadDeProductos + " disponibles");//mencionamos la cantidad en stock
-                System.out.println("cuantas unidades de este producto desea agregar");
-                productoCantidad = scan.nextInt();//guardamos la cantidad de productos que el usuario quiere
+            for (Producto producto : informationProducts) {
+                if (producto.productName.equals(productoCanasta)) {
+                    System.out.println("Tenemos " + producto.productQuantity + " disponibles");
+                    System.out.println("Cuantas unidades de este producto desea agregar");
+                    productQuantity = scan.nextInt();
 
-                if (productoCantidad > data.cantidadDeProductos) {//si la cantidad que ingresa el usuario es mayor a la de stock
-                    System.out.println("no hay suficiente producto en stock cambie la cantidad");
-                } else {
-                    canasta = (ArrayList<Producto>) informacionProducto.clone(); //guardar los productos que el usuario compra en un carrito o canasta
+                    if (productQuantity > producto.productQuantity) {
+                        System.out.println("No hay suficiente producto en stock, cambie la cantidad");
+                    } else {
+                        // Agregar el producto al carrito solo si la cantidad es suficiente
+                        basket.add(new Producto(producto.productName, producto.productPrice, productQuantity));//eleccion de productos del usuario
+                        producto.productQuantity -= productQuantity; // Actualizar la cantidad en stock
+                    }
+                    break; // Salir del bucle for una vez que se ha encontrado el producto
                 }
-            break;
-        }
+            }
 
-         System.out.println("desea agregar otro producto 1-si 2-no");
-         agregarOtroProducto = scan.nextInt();
-         scan.nextLine();
+            System.out.println("Desea agregar otro producto 1-Si 2-No");
+            addAnotherProduct = scan.nextInt();
+            scan.nextLine();
 
-     }while(agregarOtroProducto==1);
+        } while (addAnotherProduct == 1);
 
 
     }
+
+    public void shoppingReceipt(ArrayList<Producto> basket){
+        Producto finishPrice;
+        for(Producto producto : basket){
+            basket.get(producto.productPrice);
+
+        }
+        //System.out.println("el precio final es "+finishPrice);
+    }*/
 }
